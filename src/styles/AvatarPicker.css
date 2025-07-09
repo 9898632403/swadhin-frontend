@@ -1,0 +1,29 @@
+.avatar-picker {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.color-controls {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.color-controls label {
+  font-size: 0.9rem;
+}
+
+.color-controls input[type="color"] {
+  margin-left: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #eee;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.color-controls input[type="color"]:hover {
+  transform: scale(1.1);
+}

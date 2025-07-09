@@ -1,0 +1,26 @@
+.cancelled-orders-container {
+  padding: 20px;
+  background: #968989bb;
+}
+
+.cancelled-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cancelled-order-card {
+  background: #ffeaea;
+  border-left: 6px solid crimson;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.cancelled-order-card h4 {
+  margin-bottom: 8px;
+}
+
+.cancelled-order-card ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}

@@ -1,0 +1,53 @@
+/* src/styles/Header.css */
+.header {
+  background-color: #0F172A; /* Ossican Deep Blue - Primary Dark */
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Logo */
+.header .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #D4AF37; /* Antique Gold - Luxury Accent */
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Navigation */
+.header nav {
+  display: flex;
+  gap: 25px;
+}
+
+.header nav a {
+  color: #FFFFFF; /* Pure White */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.header nav a:hover {
+  color: #D4AF37; /* Antique Gold */
+  text-shadow: 0 0 5px #D4AF37;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .header nav {
+    display: none; /* You can replace this with hamburger menu logic */
+  }
+}

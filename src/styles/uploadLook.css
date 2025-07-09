@@ -1,0 +1,111 @@
+.upload-look-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ece0d1;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(56, 34, 15, 0.1);
+}
+
+.upload-look-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #38220f;
+}
+
+.upload-look-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upload-look-container input,
+.upload-look-container textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #dbc1ac;
+  font-size: 1rem;
+  background-color: #ece0d1;
+}
+
+.upload-look-container button {
+  padding: 10px;
+  background-color: #967259;
+  color: #ece0d1;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-look-container button:hover {
+  background-color: #634832;
+}
+
+.status-msg {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #634832;
+}
+
+.upload-look-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #ece0d1;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(56, 34, 15, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.upload-look-container h2 {
+  color: #38220f;
+  margin-bottom: 1rem;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upload-form input,
+.upload-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #dbc1ac;
+  border-radius: 10px;
+  font-size: 1rem;
+  resize: none;
+  width: 100%;
+  background-color: #ece0d1;
+}
+
+.upload-form button {
+  padding: 0.75rem;
+  background-color: #967259;
+  color: #ece0d1;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-form button:hover {
+  background-color: #634832;
+}
+
+.status-msg {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #634832;
+}
+
+.user-email {
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: #634832;
+}

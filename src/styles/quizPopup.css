@@ -1,0 +1,93 @@
+/* Overlay */
+.quizPopupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Popup Container */
+.quizPopup {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  width: 320px;
+  max-width: 90%;
+  position: relative;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Scratch Canvas */
+.scratchCardCanvas {
+  margin: 1rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Coupon Info */
+.couponDetails {
+  margin-top: 1rem;
+}
+
+.couponDetails h2 {
+  font-size: 1.5rem;
+  color: #1B2430;
+  margin-bottom: 0.5rem;
+}
+
+.couponDetails p {
+  font-size: 1rem;
+  color: #4A4A4A;
+}
+
+/* Copy Button */
+.copyButton {
+  background-color: #D5A6BD;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.copyButton:hover {
+  background-color: #c58ca9;
+}
+
+/* Close Button */
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 1.2rem;
+  color: #888;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,247 @@
+/* Addform.css */
+.product-form-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #FEF4E3;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(75, 54, 33, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-title {
+  color: #4B3621;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #D6C6AC;
+  position: relative;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background-color: #AA9371;
+  animation: underlineExpand 0.8s ease-out;
+}
+
+@keyframes underlineExpand {
+  from { width: 0; }
+  to { width: 100px; }
+}
+
+.product-form {
+  background-color: #EFE9DC;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(161, 136, 127, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.form-group:hover {
+  transform: translateX(5px);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4B3621;
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #D6C6AC;
+  border-radius: 6px;
+  background-color: #FEF4E3;
+  color: #4B3621;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #AA9371;
+  box-shadow: 0 0 0 3px rgba(170, 147, 113, 0.2);
+  outline: none;
+}
+
+.form-control-color {
+  height: 3rem;
+  width: 3rem !important;
+  padding: 0.2rem;
+  cursor: pointer;
+  border: 2px solid #D6C6AC !important;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background-color: #AA9371;
+  color: #FEF4E3;
+}
+
+.btn-primary:hover {
+  background-color: #8A7B5D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(75, 54, 33, 0.2);
+}
+
+.btn-primary:disabled {
+  background-color: #D6C6AC;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-danger {
+  background-color: #A1887F;
+  color: #FEF4E3;
+}
+
+.btn-danger:hover {
+  background-color: #826B63;
+  transform: translateY(-2px);
+}
+
+.alert {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.alert-danger {
+  background-color: rgba(161, 136, 127, 0.2);
+  border-left: 4px solid #A1887F;
+  color: #4B3621;
+}
+
+.alert-success {
+  background-color: rgba(170, 147, 113, 0.2);
+  border-left: 4px solid #AA9371;
+  color: #4B3621;
+}
+
+.alert-info {
+  background-color: rgba(214, 198, 172, 0.3);
+  border-left: 4px solid #D6C6AC;
+  color: #4B3621;
+}
+
+.invalid-feedback {
+  color: #A1887F;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.is-invalid {
+  border-color: #A1887F !important;
+}
+
+.img-thumbnail {
+  border: 2px solid #D6C6AC;
+  transition: all 0.3s ease;
+}
+
+.img-thumbnail:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(75, 54, 33, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1.5rem;
+  background-color: #FEF4E3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(75, 54, 33, 0.1);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.table th {
+  background-color: #AA9371;
+  color: #FEF4E3;
+  padding: 1rem;
+  text-align: left;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #D6C6AC;
+  color: #4B3621;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tr:hover td {
+  background-color: rgba(214, 198, 172, 0.3);
+  transition: all 0.3s ease;
+}
+
+.spinner-border {
+  color: #FEF4E3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-form-container {
+    padding: 1rem;
+  }
+  
+  .product-form {
+    padding: 1.5rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .form-control-color {
+    margin-bottom: 0.5rem;
+  }
+}

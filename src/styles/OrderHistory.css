@@ -1,0 +1,332 @@
+/* OrderHistory.css */
+
+/* Base Styles */
+.orderHistoryContainer {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #634832;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  color: #38220f;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #967259, #dbc1ac);
+  border-radius: 2px;
+}
+
+.error {
+  background-color: #ece0d1;
+  color: #634832;
+  padding: 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #634832;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* Search and Filter */
+.searchInput, .filterBar input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #dbc1ac;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(56, 34, 15, 0.05);
+}
+
+.searchInput:focus, .filterBar input:focus {
+  outline: none;
+  border-color: #967259;
+  box-shadow: 0 2px 8px rgba(150, 114, 89, 0.2);
+}
+
+.filterBar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filterBar input {
+  flex: 1;
+}
+
+/* Order Cards */
+.orderCard {
+  background: #ece0d1;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(56, 34, 15, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-left: 4px solid #967259;
+  position: relative;
+  overflow: hidden;
+}
+
+.orderCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(56, 34, 15, 0.12);
+}
+
+.orderCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #967259, #dbc1ac);
+}
+
+.orderCard h3 {
+  color: #38220f;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.orderCard p {
+  margin: 0.5rem 0;
+  color: #634832;
+}
+
+.orderCard strong {
+  color: #38220f;
+}
+
+/* Order Items List */
+.orderItems {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  border-top: 1px solid #dbc1ac;
+  border-bottom: 1px solid #dbc1ac;
+  padding: 1rem 0;
+}
+
+.orderItem {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed #dbc1ac;
+  transition: background 0.3s;
+}
+
+.orderItem:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.productLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s;
+}
+
+.productLink:hover {
+  transform: translateX(5px);
+}
+
+.productThumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 1rem;
+  border: 1px solid #dbc1ac;
+  transition: transform 0.3s;
+}
+
+.productLink:hover .productThumb {
+  transform: scale(1.05);
+}
+
+.productInfo {
+  flex: 1;
+}
+
+.productName {
+  font-weight: 600;
+  color: #38220f;
+  margin-bottom: 0.3rem;
+}
+
+.productQtyPrice {
+  color: #967259;
+  font-size: 0.9rem;
+}
+
+/* Order Actions */
+.orderActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dbc1ac;
+}
+
+.orderActions select {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #dbc1ac;
+  background-color: #ece0d1;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 180px;
+}
+
+.orderActions select:focus {
+  outline: none;
+  border-color: #967259;
+}
+
+.orderActions button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.orderActions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(56, 34, 15, 0.1);
+}
+
+.trackBtn {
+  background-color: #967259;
+  color: #ece0d1;
+}
+
+.trackBtn:hover {
+  background-color: #634832;
+}
+
+.downloadBtn {
+  background-color: #dbc1ac;
+  color: #38220f;
+}
+
+.downloadBtn:hover {
+  background-color: #967259;
+}
+
+.deleteBtn {
+  background-color: #634832;
+  color: #ece0d1;
+}
+
+.deleteBtn:hover {
+  background-color: #38220f;
+}
+
+.clearBtn {
+  background-color: #967259;
+  color: #ece0d1;
+  padding: 0.8rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.clearBtn:hover {
+  background-color: #634832;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(56, 34, 15, 0.1);
+}
+
+.clearBtn:disabled {
+  background-color: #dbc1ac;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Status Badges */
+.orderCard [aria-selected="true"],
+.orderCard [value="Pending"] {
+  color: #dbc1ac;
+}
+
+.orderCard [value="Packed"] {
+  color: #967259;
+}
+
+.orderCard [value="Out for Delivery"] {
+  color: #634832;
+}
+
+.orderCard [value="Delivered"] {
+  color: #dbc1ac;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .orderHistoryContainer {
+    padding: 1rem;
+  }
+  
+  .orderActions {
+    flex-direction: column;
+  }
+  
+  .orderActions button, 
+  .orderActions select {
+    width: 100%;
+  }
+  
+  .filterBar {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.orderHistoryContainer > p[style*="Loading"] {
+  animation: pulse 1.5s infinite;
+  color: #967259;
+  font-style: italic;
+}

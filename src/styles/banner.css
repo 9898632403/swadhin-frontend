@@ -1,0 +1,165 @@
+/* Admin Banner Panel - Premium Styles */
+.admin-banner-panel {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.panel-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.panel-section h2 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* Notification Styles */
+.notification-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.notification-form .full-width {
+  flex: 1;
+}
+
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.notification-item:hover {
+  background: #f1f3f5;
+  transform: translateY(-1px);
+}
+
+/* Banner Upload Styles */
+.upload-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.upload-controls .full-width {
+  flex: 1;
+}
+
+.p-fileupload {
+  border: 2px dashed #e0e0e0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.p-fileupload:hover {
+  border-color: #6366f1;
+}
+
+.p-fileupload .p-button {
+  background: #6366f1;
+  border: none;
+}
+
+/* Banner Preview Styles */
+.banner-preview {
+  margin-top: 2rem;
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.banner-preview h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.empty-preview {
+  text-align: center;
+  padding: 2rem;
+  color: #868e96;
+}
+
+.banner-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.banner-item img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  display: block;
+}
+
+.banner-actions {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.banner-item:hover .banner-actions {
+  opacity: 1;
+}
+
+/* Carousel Customization */
+.p-carousel .p-carousel-indicators .p-carousel-indicator button {
+  background-color: #d1d5db;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+  background-color: #6366f1;
+  width: 24px;
+  border-radius: 6px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.panel-section {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .admin-banner-panel {
+    padding: 1rem;
+  }
+  
+  .notification-form, .upload-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,251 @@
+/* 🟣 Base Container */
+.style-quiz-container {
+  min-height: 100vh;
+  background: linear-gradient(to right top, #f5e9e2, #d5a6bd);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-x: hidden;
+  animation: fadeIn 1.2s ease-in;
+}
+
+/* 🟣 Heading */
+.style-quiz-title {
+  font-size: 3rem;
+  color: #1b2430;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  animation: popIn 1s ease-out;
+}
+
+/* 🟣 Question Card */
+.question-card {
+  background-color: #ffffff;
+  border-radius: 2rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(213, 166, 189, 0.3);
+  animation: fadeInUp 0.8s ease;
+}
+
+/* 🟣 Question Title */
+.question-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+}
+
+/* 🟣 Option Style */
+.option {
+  background-color: #f5e9e2;
+  border: 2px solid #d5a6bd;
+  padding: 1rem;
+  margin-bottom: 0.7rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #1b2430;
+  text-align: center;
+}
+
+.option:hover,
+.option.selected {
+  background-color: #d5a6bd;
+  color: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+/* 🟣 Submit Button */
+.submit-btn {
+  background: linear-gradient(45deg, #d5a6bd, #f5e9e2);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 2rem;
+  color: #1b2430;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background 0.4s ease, transform 0.3s ease;
+  font-weight: bold;
+  animation: popIn 1s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(45deg, #f5e9e2, #d5a6bd);
+  transform: scale(1.1);
+}
+
+/* 🎇 Confetti Celebration (optional) */
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: smokeBoom 0.5s ease-out, confettiRain 3s ease-in-out forwards;
+  background: url('https://static.vecteezy.com/system/resources/thumbnails/031/606/206/small_2x/happy-new-year-new-year-holidays-background-decor-on-christmas-background-generative-ai-illustration-photo.jpg') center/cover no-repeat;
+}
+
+/* 🎉 Modal Overlay with Blur + Smoke */
+.congrats-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInSmokeSoft 1.2s ease forwards;
+}
+
+/* 🎊 Popup Content */
+.congrats-popup {
+  background: linear-gradient(145deg, #f5e9e2, #ffffff);
+  padding: 2rem 2.5rem;
+  border-radius: 30px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 25px #d5a6bd, 0 0 40px rgba(213, 166, 189, 0.4);
+  border: 3px solid #d5a6bd;
+  animation: softPopIn 0.8s ease-out;
+}
+
+/* 📝 Popup Texts */
+.congrats-popup h2 {
+  font-size: 2rem;
+  color: #1b2430;
+  margin-bottom: 0.6rem;
+  animation: subtleGlow 2s ease-in-out infinite alternate;
+}
+
+.congrats-popup p {
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  margin-bottom: 1.5rem;
+  animation: floatText 3s ease-in-out infinite;
+}
+
+/* ✖️ Close Button */
+.close-popup {
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 14px;
+  cursor: pointer;
+  border: none;
+  background-color: #d5a6bd;
+  color: #fff;
+  box-shadow: 0 0 18px #d5a6bd;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.close-popup:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 26px rgba(213, 166, 189, 0.6);
+}
+
+/* 🌪 Optional light screen vibration */
+.vibrate-screen {
+  animation: lightVibrate 0.8s ease-in-out 1;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInSmokeSoft {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+    filter: blur(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes softPopIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes subtleGlow {
+  0% {
+    text-shadow: 0 0 4px #d5a6bd, 0 0 8px #f5e9e2;
+  }
+  100% {
+    text-shadow: 0 0 8px #d5a6bd, 0 0 16px #f5e9e2;
+  }
+}
+
+@keyframes floatText {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes lightVibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes smokeBoom {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.2;
+    filter: blur(4px);
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes confettiRain {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}

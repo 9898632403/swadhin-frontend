@@ -1,0 +1,295 @@
+/* PolicyPages.css */
+
+/* Base styles for the popup overlay */
+.policyPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(56, 34, 15, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+
+/* Content box styling */
+.popupContent {
+  position: relative;
+  background: linear-gradient(135deg, #ece0d1 0%, #dbc1ac 100%);
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(56, 34, 15, 0.25);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(219, 193, 172, 0.3);
+  opacity: 1;
+}
+
+/* Close button styling */
+.closeBtn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: transparent;
+  border: none;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  color: #967259;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(56, 34, 15, 0.08);
+  padding: 0;
+}
+
+.closeBtn::before,
+.closeBtn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.closeBtn::before {
+  border-top-color: rgba(56, 34, 15, 0.2);
+  animation: spin 6s linear infinite paused;
+}
+
+.closeBtn::after {
+  border-bottom-color: rgba(56, 34, 15, 0.1);
+  animation: spin-reverse 4s linear infinite paused;
+}
+
+.closeBtn span {
+  font-size: 1.6rem;
+  line-height: 1;
+  margin-top: -2px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.closeBtn:hover {
+  background: linear-gradient(135deg, rgba(56, 34, 15, 0.05), rgba(56, 34, 15, 0.1));
+  color: #634832;
+  transform: scale(1.15) rotate(180deg);
+  box-shadow: 0 5px 20px rgba(56, 34, 15, 0.15);
+}
+
+.closeBtn:hover::before,
+.closeBtn:hover::after {
+  animation-play-state: running;
+  border-width: 2px;
+}
+
+.closeBtn:hover span {
+  transform: scale(1.2);
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  100% { transform: rotate(-360deg); }
+}
+
+/* Header styling */
+.popupContent h1 {
+  color: #38220f;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #dbc1ac;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* Policy text container */
+.policyText {
+  margin-bottom: 1.5rem;
+}
+
+/* Paragraph styling */
+.popupContent p {
+  color: #634832;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+
+/* Link styling */
+.popupContent a {
+  color: #967259;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(150, 114, 89, 0.3);
+  padding-bottom: 1px;
+}
+
+.popupContent a:hover {
+  color: #634832;
+  border-bottom-color: rgba(99, 72, 50, 0.7);
+}
+
+/* Button container */
+.policyActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dbc1ac;
+}
+
+/* Accept button styling */
+.acceptPolicy {
+  background: linear-gradient(135deg, #967259 0%, #634832 100%);
+  color: #ece0d1;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(150, 114, 89, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.acceptPolicy:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(150, 114, 89, 0.4);
+}
+
+.acceptPolicy:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(150, 114, 89, 0.3);
+}
+
+/* Add to your existing PolicyPages.css */
+
+.policyText section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #dbc1ac;
+}
+
+.policyText h2 {
+  color: #38220f;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.policyText ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.policyText li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.policyText strong {
+  color: #38220f;
+  font-weight: 600;
+}
+
+.policyText em {
+  color: #967259;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.popupContent {
+  animation: slideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Vibration effect */
+.popupContent.vibrate {
+  animation: vibration 0.3s linear;
+}
+
+@keyframes vibration {
+  0% { transform: translateX(0) translateY(0); }
+  20% { transform: translateX(-3px) translateY(-2px); }
+  40% { transform: translateX(3px) translateY(2px); }
+  60% { transform: translateX(-3px) translateY(2px); }
+  80% { transform: translateX(3px) translateY(-2px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* Smoke effect on close */
+.popupContent.closing {
+  animation: smokeOut 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+@keyframes smokeOut {
+  0% { 
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% { 
+    transform: scale(1.2);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .popupContent {
+    width: 95%;
+    padding: 1.8rem;
+    border-radius: 12px;
+  }
+  
+  .popupContent h1 {
+    font-size: 1.5rem;
+  }
+  
+  .policyActions {
+    justify-content: center;
+  }
+  
+  .acceptPolicy {
+    width: 100%;
+    padding: 0.8rem;
+  }
+}

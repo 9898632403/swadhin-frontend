@@ -1,0 +1,195 @@
+/* AdminUsers.css */
+
+/* Base Styles */
+.admin-users-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ece0d1;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(56, 34, 15, 0.08);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #dbc1ac;
+}
+
+.admin-header h1 {
+  color: #38220f;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Loading and Error States */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #634832;
+  font-size: 1.2rem;
+}
+
+.error-message {
+  padding: 1.5rem;
+  background: #dbc1ac;
+  color: #38220f;
+  border-radius: 8px;
+  border-left: 4px solid #634832;
+  font-weight: 500;
+}
+
+.no-users {
+  text-align: center;
+  padding: 2rem;
+  color: #967259;
+  font-size: 1.1rem;
+}
+
+/* Table Styles */
+.users-table-container {
+  overflow-x: auto;
+  background: #ece0d1;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(56, 34, 15, 0.05);
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.users-table thead {
+  background-color: #634832;
+  color: #ece0d1;
+}
+
+.users-table th {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.users-table td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #dbc1ac;
+  color: #38220f;
+}
+
+.users-table tr:last-child td {
+  border-bottom: none;
+}
+
+.users-table tr:hover {
+  background-color: #dbc1ac;
+}
+
+.admin-row {
+  background-color: #dbc1ac;
+}
+
+.admin-row td {
+  color: #634832;
+  font-weight: 500;
+}
+
+/* Buttons */
+.refresh-button {
+  background-color: #634832;
+  color: #ece0d1;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.refresh-button:hover {
+  background-color: #38220f;
+  transform: translateY(-1px);
+}
+
+.refresh-button:active {
+  transform: translateY(0);
+}
+
+.delete-button {
+  background-color: #dbc1ac;
+  color: #38220f;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #967259;
+  transform: translateY(-1px);
+}
+
+.delete-button:active {
+  transform: translateY(0);
+}
+
+/* User Count */
+.user-count {
+  background: #ece0d1;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: #634832;
+  box-shadow: 0 1px 3px rgba(56, 34, 15, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-users-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .users-table th, 
+  .users-table td {
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.users-table tr {
+  animation: fadeIn 0.3s ease forwards;
+  opacity: 0;
+}
+
+.users-table tr:nth-child(1) { animation-delay: 0.1s; }
+.users-table tr:nth-child(2) { animation-delay: 0.2s; }
+.users-table tr:nth-child(3) { animation-delay: 0.3s; }
+/* Add more if needed */

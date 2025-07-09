@@ -1,0 +1,35 @@
+/* src/styles/Buttons.css */
+.btn {
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  font-weight: 500;
+}
+
+/* Primary button - Deep Navy with Golden hover */
+.btn-primary {
+  background-color: #1B2430; /* Deep Navy */
+  color: #FFFFFF;            /* White */
+}
+
+.btn-primary:hover {
+  background-color: #D4AF37; /* Golden hover */
+  color: #1B2430;            /* Text switches to Deep Navy */
+  transform: scale(1.03);
+}
+
+/* Secondary button - Dusty Rose with subtle hover */
+.btn-secondary {
+  background-color: #D5A6BD; /* Dusty Rose */
+  color: #FFFFFF;            /* White */
+}
+
+.btn-secondary:hover {
+  background-color: #c48dab; /* Deeper Dusty Rose */
+  color: #FFFFFF;
+  transform: scale(1.03);
+}

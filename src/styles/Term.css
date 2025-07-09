@@ -1,0 +1,152 @@
+/* Enhanced Terms Popup CSS */
+.policyPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(56, 34, 15, 0.96);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.popupContent {
+  background: linear-gradient(145deg, #ece0d1 0%, #dbc1ac 100%);
+  padding: 2.5rem;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 
+    0 10px 30px rgba(56, 34, 15, 0.25),
+    0 0 0 1px rgba(219, 193, 172, 0.1) inset;
+  animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  border: 1px solid rgba(219, 193, 172, 0.3);
+}
+
+.popupContent h1 {
+  color: #38220f;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #dbc1ac;
+  font-weight: 700;
+}
+
+.popupContent h2 {
+  color: #634832;
+  font-size: 1.3rem;
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+}
+
+.popupContent p {
+  color: #634832;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.popupContent ul {
+  padding-left: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.popupContent li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.popupContent li::before {
+  content: '•';
+  color: #967259;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.popupContent a {
+  color: #967259;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(150, 114, 89, 0.3);
+  transition: all 0.2s ease;
+  padding-bottom: 1px;
+}
+
+.popupContent a:hover {
+  color: #634832;
+  border-bottom-color: rgba(99, 72, 50, 0.7);
+}
+
+.last-updated {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dbc1ac;
+  font-size: 0.9rem;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(56, 34, 15, 0.1);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.5rem;
+  color: #967259;
+}
+
+.closeBtn:hover {
+  background: rgba(150, 114, 89, 0.2);
+  color: #634832;
+  transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .policyPopup {
+    padding: 1rem;
+  }
+  
+  .popupContent {
+    padding: 1.8rem;
+  }
+  
+  .popupContent h1 {
+    font-size: 1.6rem;
+  }
+  
+  .popupContent h2 {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,313 @@
+:root {
+  --primary: #4361ee;
+  --primary-light: #4895ef;
+  --secondary: #3f37c9;
+  --dark: #1a1a2e;
+  --light: #f8f9fa;
+  --success: #4cc9f0;
+  --warning: #f72585;
+  --text: #2b2d42;
+  --text-light: #8d99ae;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.trend-toolkit-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+}
+
+/* Modern Header */
+.toolkit-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.toolkit-header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, var(--primary), var(--warning));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+  letter-spacing: -0.05em;
+}
+
+.toolkit-header p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Glassmorphism Control Panel */
+.controls-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Gender Toggle Switch */
+.gender-toggle {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.gender-button {
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--text-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.gender-button.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+}
+
+.gender-button:hover:not(.active) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Premium Color Picker */
+.color-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.color-picker-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.color-picker-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.color-picker-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.color-picker-button:hover {
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.color-picker-button:hover::after {
+  opacity: 1;
+}
+
+.color-picker-input-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.color-picker-input-container input[type="color"] {
+  width: 60px;
+  height: 60px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.color-hex-value {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  background: var(--light);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-left: 1rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* 3D Canvas Container */
+.canvas-container {
+  width: 100%;
+  height: 600px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.canvas-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(4px);
+}
+
+.loading-spinner::after {
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .trend-toolkit-container {
+    padding: 0 1rem;
+  }
+  
+  .toolkit-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .toolkit-header p {
+    font-size: 1rem;
+  }
+  
+  .gender-toggle {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .color-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .color-picker-input-container {
+    position: static;
+    transform: none;
+    margin-top: 1rem;
+  }
+  
+  .canvas-container {
+    height: 450px;
+    border-radius: 12px;
+  }
+}
+
+/* Micro-interactions */
+button {
+  user-select: none;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 6px;
+  border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 6px;
+}
