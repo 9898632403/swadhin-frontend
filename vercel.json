@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://48c36779a925.ngrok-free.app/api/:match*"
+    },
+    {
+      "source": "/hero-slides",
+      "destination": "https://48c36779a925.ngrok-free.app/hero-slides"
+    },
+    {
+      "source": "/gallery",
+      "destination": "https://48c36779a925.ngrok-free.app/gallery"
+    },
+    {
+      "source": "/testimonials",
+      "destination": "https://48c36779a925.ngrok-free.app/testimonials"
+    }
+  ]
+}
