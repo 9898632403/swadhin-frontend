@@ -6,7 +6,7 @@ import { FiSearch, FiShoppingCart, FiEdit2, FiTrash2, FiPlus } from 'react-icons
 import { RiAdminLine } from 'react-icons/ri';
 import { BiErrorCircle, BiSad } from 'react-icons/bi';
 import '../styles/product.css';
-import { BASE_URL } from './config'; 
+import { BASE_URL } from '../config'; 
 
 function Products() {
   const binaryRainRef = useRef(null);
