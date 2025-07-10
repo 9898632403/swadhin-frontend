@@ -6,6 +6,7 @@ import { FiSearch, FiShoppingCart, FiEdit2, FiTrash2, FiPlus } from 'react-icons
 import { RiAdminLine } from 'react-icons/ri';
 import { BiErrorCircle, BiSad } from 'react-icons/bi';
 import '../styles/product.css';
+import { BASE_URL } from './config'; 
 
 function Products() {
   const binaryRainRef = useRef(null);
@@ -18,24 +19,43 @@ function Products() {
 
   const isAdmin = userInfo?.email === 'admin@example.com';
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setIsLoading(true);
-        const res = await fetch('http://localhost:5000/api/products');
-        if (!res.ok) throw new Error('Failed to fetch products');
-        const data = await res.json();
-        setProductsList(data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       const res = await fetch('https://48c36779a925.ngrok-free.app/api/products');
+  //       if (!res.ok) throw new Error('Failed to fetch products');
+  //       const data = await res.json();
+  //       setProductsList(data);
+  //     } catch (error) {
+  //       console.error('Error fetching products:', error);
+  //       setError(error.message);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, []);
+  //   fetchProducts();
+  // }, []);
+  useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/api/products`);
+      if (!res.ok) throw new Error('Failed to fetch products');
+      const data = await res.json();
+      setProductsList(data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchProducts();
+}, []);
+
 
   const handleDelete = async (productId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this product?");
