@@ -1,3 +1,4 @@
+import { BASE_URL } from "../config";
 import React, { useEffect, useState, useContext, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
@@ -21,8 +22,8 @@ const ImageGallery = ({ images }) => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    if (imagePath.startsWith('/static')) return `http://localhost:5000${imagePath}`;
-    return `http://localhost:5000/static/uploads/products/${imagePath}`;
+    if (imagePath.startsWith('/static')) return `${BASE_URL}${imagePath}`;
+    return `${BASE_URL}/static/uploads/products/${imagePath}`;
   };
 
   return (
@@ -109,8 +110,8 @@ const LuxuryProductCard = ({ product }) => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    if (imagePath.startsWith('/static')) return `http://localhost:5000${imagePath}`;
-    return `http://localhost:5000/static/uploads/products/${imagePath}`;
+    if (imagePath.startsWith('/static')) return `${BASE_URL}${imagePath}`;
+    return `${BASE_URL}/static/uploads/products/${imagePath}`;
   };
 
   return (
@@ -172,8 +173,8 @@ const ProductDetail = () => {
         }
 
         const [productRes, productsRes] = await Promise.all([
-          fetch(`http://localhost:5000/api/products/${productId}`),
-          fetch("http://localhost:5000/api/products")
+          fetch(`${BASE_URL}/api/products/${productId}`),
+          fetch(`${BASE_URL}/api/products`)
         ]);
 
         if (!productRes.ok || !productsRes.ok) {
@@ -197,7 +198,7 @@ const ProductDetail = () => {
 
         if (userEmail) {
           const couponsRes = await fetch(
-            `http://localhost:5000/api/user/coupons/available?email=${userEmail}`
+            `${BASE_URL}/api/user/coupons/available?email=${userEmail}`
           );
           if (couponsRes.ok) {
             const couponsData = await couponsRes.json();
@@ -223,7 +224,7 @@ const ProductDetail = () => {
         user_email: userEmail
       });
 
-      const response = await fetch(`http://localhost:5000/api/coupons/validate?${params}`);
+      const response = await fetch(`${BASE_URL}/api/coupons/validate?${params}`);
       
       if (!response.ok) {
         const errorData = await response.json();
@@ -239,7 +240,7 @@ const ProductDetail = () => {
 
   const handleConfirmCouponUse = async (orderId) => {
     try {
-      const response = await fetch("http://localhost:5000/api/coupons/confirm-use", {
+      const response = await fetch(`${BASE_URL}/api/coupons/confirm-use`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
