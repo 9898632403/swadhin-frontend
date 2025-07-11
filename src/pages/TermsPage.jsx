@@ -1,3 +1,4 @@
+import { BASE_URL } from "../config";
 import React from "react";
 import "../styles/Term.css";
 import { useNavigate } from "react-router-dom";
@@ -62,8 +63,8 @@ const TermsPopup = ({ onClose }) => {
 
         <section>
           <h2>7. Dispute Resolution</h2>
-          <p>All disputes will be resolved through arbitration in [Your City], India under Indian law. By placing an order, you waive rights to class action lawsuits.</p>
-          <p>For any concerns, contact our Customer Relations Team at <a href="mailto:disputes@swadhinsupport.com">disputes@swadhinsupport.com</a>.</p>
+          <p>All disputes will be resolved through arbitration in your jurisdiction under Indian law. By placing an order, you waive rights to class action lawsuits.</p>
+          <p>For any concerns, contact our Customer Relations Team at <a href="mailto:swadhin.byvaishali@gmail.com">swadhin.byvaishali@gmail.com</a>.</p>
         </section>
 
         <section className="last-updated">
