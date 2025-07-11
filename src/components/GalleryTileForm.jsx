@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import { BASE_URL } from "../config";
 import "../styles/HeroSlideForm.css"; // reuse same style for pro look
 
 const GalleryTileForm = () => {
@@ -30,7 +31,7 @@ const GalleryTileForm = () => {
 
   const fetchTiles = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/admin/gallery", {
+      const res = await axios.get(`${BASE_URL}/admin/gallery`, {
         headers: { "X-User-Email": userEmail }
       });
       setTiles(res.data.tiles || []);
@@ -78,7 +79,7 @@ const GalleryTileForm = () => {
     setMessage({ text: "Uploading file...", type: "info" });
 
     try {
-      const res = await axios.post("http://localhost:5000/upload/gallery", form, {
+      const res = await axios.post(`${BASE_URL}/upload/gallery`, form, {
         headers: { "X-User-Email": userEmail }
       });
       return res.data.fileUrl;
@@ -104,7 +105,7 @@ const GalleryTileForm = () => {
         caption: formData.caption.trim()
       };
 
-      await axios.post("http://localhost:5000/admin/gallery", payload, {
+      await axios.post(`${BASE_URL}/admin/gallery`, payload, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Email": userEmail
@@ -128,7 +129,7 @@ const GalleryTileForm = () => {
   const deleteTile = async (id) => {
     if (!window.confirm("Delete this gallery tile?")) return;
     try {
-      await axios.delete(`http://localhost:5000/admin/gallery/${id}`, {
+      await axios.delete(`${BASE_URL}/admin/gallery/${id}`, {
         headers: { "X-User-Email": userEmail }
       });
       setTiles((prev) => prev.filter((tile) => tile._id !== id));
