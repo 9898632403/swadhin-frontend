@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import { format, parseISO } from "date-fns";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../config";
 import "../styles/CouponForm.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -67,7 +68,7 @@ export default function CouponForm() {
   const fetchCoupons = async () => {
     try {
       setLoadingCoupons(true);
-      const res = await fetch("http://localhost:5000/api/admin/coupons", {
+      const res = await fetch(`${BASE_URL}/api/admin/coupons`, {
         headers: {
           "X-User-Email": userInfo?.email || "",
         },
@@ -117,7 +118,7 @@ export default function CouponForm() {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/coupons", {
+      const res = await fetch(`${BASE_URL}/api/admin/coupons`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -159,7 +160,7 @@ export default function CouponForm() {
     if (!window.confirm(`Are you sure you want to delete coupon: ${code}?`)) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/coupons/${encodeURIComponent(code)}`, {
+      const res = await fetch(`${BASE_URL}/api/admin/coupons/${encodeURIComponent(code)}`, {
         method: "DELETE",
         headers: {
           "X-User-Email": userInfo?.email || "",
@@ -180,7 +181,7 @@ export default function CouponForm() {
 
   const toggleCouponStatus = async (code, currentStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/admin/coupons/${encodeURIComponent(code)}/toggle`, {
+      const res = await fetch(`${BASE_URL}/api/admin/coupons/${encodeURIComponent(code)}/toggle`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -464,244 +465,244 @@ export default function CouponForm() {
       </div>
 
       <style jsx>{`
-  .coupon-management {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: #1a202c;
-  }
-  
-  .coupon-form-container, .coupons-list-container {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    border: 1px solid #edf2f7;
-  }
-  
-  h2 {
-    color: #2d3748;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 0.75rem;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  
-  .form-row {
-    display: flex;
-    gap: 1.25rem;
-  }
-  
-  .form-row .form-group {
-    flex: 1;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  label {
-    font-weight: 500;
-    color: #4a5568;
-    font-size: 0.875rem;
-  }
-  
-  input, select {
-    padding: 0.75rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 0.9375rem;
-    transition: all 0.15s ease;
-    background-color: #f8fafc;
-  }
-  
-  input:focus, select:focus {
-    outline: none;
-    border-color: #4299e1;
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.16);
-    background-color: #fff;
-  }
-  
-  input.error {
-    border-color: #fc8181;
-    background-color: #fff5f5;
-  }
-  
-  .error-message {
-    color: #e53e3e;
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-    font-weight: 500;
-  }
-  
-  .form-checkbox-group {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 0.5rem 0;
-  }
-  
-  .form-checkbox-group input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #4299e1;
-    cursor: pointer;
-  }
-  
-  .submit-button {
-    background: #4299e1;
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9375rem;
-    transition: all 0.2s ease;
-    margin-top: 0.5rem;
-    letter-spacing: 0.025em;
-  }
-  
-  .submit-button:hover {
-    background: #3182ce;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  }
-  
-  .submit-button:disabled {
-    background: #cbd5e0;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .table-responsive {
-    overflow-x: auto;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-  }
-  
-  .coupons-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.875rem;
-  }
-  
-  .coupons-table th, .coupons-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  
-  .coupons-table th {
-    background: #f8fafc;
-    font-weight: 600;
-    color: #4a5568;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-  }
-  
-  .coupons-table tr:hover {
-    background-color: #f8fafc;
-  }
-  
-  .coupon-description {
-    font-size: 0.8125rem;
-    color: #718096;
-    margin-top: 0.25rem;
-    line-height: 1.4;
-  }
-  
-  .status-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.375rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-  
-  .status-badge.active {
-    background: #ebf8ff;
-    color: #2b6cb0;
-  }
-  
-  .status-badge.inactive {
-    background: #fff5f5;
-    color: #c53030;
-  }
-  
-  .status-badge:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  }
-  
-  .delete-button {
-    background: #fff5f5;
-    color: #c53030;
-    border: 1px solid #fed7d7;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    transition: all 0.15s ease;
-  }
-  
-  .delete-button:hover {
-    background: #fed7d7;
-    transform: translateY(-1px);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
-  
-  .loading, .empty-state {
-    text-align: center;
-    padding: 2rem;
-    color: #718096;
-    font-size: 0.9375rem;
-  }
-  
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  @media (max-width: 768px) {
-    .form-row {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .coupon-management {
-      padding: 1rem;
-    }
-    
-    .coupon-form-container, .coupons-list-container {
-      padding: 1.5rem;
-    }
-    
-    .coupons-table th, .coupons-table td {
-      padding: 0.75rem;
-    }
-  }
-`}</style>
+        .coupon-management {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          color: #1a202c;
+        }
+        
+        .coupon-form-container, .coupons-list-container {
+          background: #ffffff;
+          border-radius: 12px;
+          padding: 2rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+          border: 1px solid #edf2f7;
+        }
+        
+        h2 {
+          color: #2d3748;
+          margin-bottom: 1.5rem;
+          font-size: 1.5rem;
+          font-weight: 600;
+          letter-spacing: -0.025em;
+          border-bottom: 1px solid #e2e8f0;
+          padding-bottom: 0.75rem;
+        }
+        
+        .form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+        
+        .form-row {
+          display: flex;
+          gap: 1.25rem;
+        }
+        
+        .form-row .form-group {
+          flex: 1;
+        }
+        
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        label {
+          font-weight: 500;
+          color: #4a5568;
+          font-size: 0.875rem;
+        }
+        
+        input, select {
+          padding: 0.75rem;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          font-size: 0.9375rem;
+          transition: all 0.15s ease;
+          background-color: #f8fafc;
+        }
+        
+        input:focus, select:focus {
+          outline: none;
+          border-color: #4299e1;
+          box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.16);
+          background-color: #fff;
+        }
+        
+        input.error {
+          border-color: #fc8181;
+          background-color: #fff5f5;
+        }
+        
+        .error-message {
+          color: #e53e3e;
+          font-size: 0.75rem;
+          margin-top: 0.25rem;
+          font-weight: 500;
+        }
+        
+        .form-checkbox-group {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin: 0.5rem 0;
+        }
+        
+        .form-checkbox-group input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          accent-color: #4299e1;
+          cursor: pointer;
+        }
+        
+        .submit-button {
+          background: #4299e1;
+          color: white;
+          border: none;
+          padding: 0.875rem 1.5rem;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 0.9375rem;
+          transition: all 0.2s ease;
+          margin-top: 0.5rem;
+          letter-spacing: 0.025em;
+        }
+        
+        .submit-button:hover {
+          background: #3182ce;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+        
+        .submit-button:disabled {
+          background: #cbd5e0;
+          cursor: not-allowed;
+          transform: none;
+          box-shadow: none;
+        }
+        
+        .table-responsive {
+          overflow-x: auto;
+          border-radius: 8px;
+          border: 1px solid #e2e8f0;
+        }
+        
+        .coupons-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 0.875rem;
+        }
+        
+        .coupons-table th, .coupons-table td {
+          padding: 1rem;
+          text-align: left;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .coupons-table th {
+          background: #f8fafc;
+          font-weight: 600;
+          color: #4a5568;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 0.05em;
+        }
+        
+        .coupons-table tr:hover {
+          background-color: #f8fafc;
+        }
+        
+        .coupon-description {
+          font-size: 0.8125rem;
+          color: #718096;
+          margin-top: 0.25rem;
+          line-height: 1.4;
+        }
+        
+        .status-badge {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.375rem 0.75rem;
+          border-radius: 9999px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.15s ease;
+        }
+        
+        .status-badge.active {
+          background: #ebf8ff;
+          color: #2b6cb0;
+        }
+        
+        .status-badge.inactive {
+          background: #fff5f5;
+          color: #c53030;
+        }
+        
+        .status-badge:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        
+        .delete-button {
+          background: #fff5f5;
+          color: #c53030;
+          border: 1px solid #fed7d7;
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 0.8125rem;
+          font-weight: 500;
+          transition: all 0.15s ease;
+        }
+        
+        .delete-button:hover {
+          background: #fed7d7;
+          transform: translateY(-1px);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .loading, .empty-state {
+          text-align: center;
+          padding: 2rem;
+          color: #718096;
+          font-size: 0.9375rem;
+        }
+        
+        .loading {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 0.75rem;
+        }
+        
+        @media (max-width: 768px) {
+          .form-row {
+            flex-direction: column;
+            gap: 1rem;
+          }
+          
+          .coupon-management {
+            padding: 1rem;
+          }
+          
+          .coupon-form-container, .coupons-list-container {
+            padding: 1.5rem;
+          }
+          
+          .coupons-table th, .coupons-table td {
+            padding: 0.75rem;
+          }
+        }
+      `}</style>
     </div>
   );
 }
