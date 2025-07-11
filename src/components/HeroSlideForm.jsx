@@ -2,6 +2,7 @@ import React, { useState, useContext, useCallback, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import "../styles/HeroSlideForm.css";
+import { BASE_URL } from "../config";
 
 export default function HeroSlideForm() {
   const { userInfo } = useContext(UserContext);
@@ -33,7 +34,7 @@ export default function HeroSlideForm() {
 
   const fetchSlides = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/admin/hero-slide", {
+      const res = await axios.get(`${BASE_URL}/admin/hero-slide`, {
         headers: { "X-User-Email": userEmail },
       });
       setSlides(res.data.slides);
@@ -45,7 +46,7 @@ export default function HeroSlideForm() {
   const deleteSlide = async (id) => {
     if (!window.confirm("Are you sure you want to delete this slide?")) return;
     try {
-      await axios.delete(`http://localhost:5000/admin/hero-slide/${id}`, {
+      await axios.delete(`${BASE_URL}/admin/hero-slide/${id}`, {
         headers: { "X-User-Email": userEmail },
       });
       setSlides((prev) => prev.filter((slide) => slide._id !== id));
@@ -97,7 +98,7 @@ export default function HeroSlideForm() {
     form.append("file", fileUpload);
 
     try {
-      const res = await axios.post("http://localhost:5000/upload/hero", form, {
+      const res = await axios.post(`${BASE_URL}/upload/hero`, form, {
         headers: { "X-User-Email": userEmail }
       });
       return res.data.fileUrl;
@@ -127,7 +128,7 @@ export default function HeroSlideForm() {
         subtitle: formData.subtitle.trim(),
         overlayColor: formData.overlayColor.trim(),
       };
-      await axios.post("http://localhost:5000/admin/hero-slide", payload, {
+      await axios.post(`${BASE_URL}/admin/hero-slide`, payload, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Email": userEmail,
