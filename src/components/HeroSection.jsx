@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/parallax";
 import "../styles/HeroSection.css";
+import { BASE_URL } from "../config";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -40,21 +41,21 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/hero-slides", { credentials: "include" })
+    fetch(`${BASE_URL}/hero-slides`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => setSlides(data.slides || []))
       .catch((err) => console.error("❌ Hero slides fetch failed:", err));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/trending")
+    fetch(`${BASE_URL}/api/products/trending`)
       .then((res) => res.json())
       .then((data) => setTrendingProducts(data))
       .catch((err) => console.error("❌ Trending fetch failed:", err));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/testimonials")
+    fetch(`${BASE_URL}/testimonials`)
       .then(res => res.json())
       .then(data => {
         setTestimonials(data.testimonials || []);
@@ -65,7 +66,7 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/gallery")
+    fetch(`${BASE_URL}/gallery`)
       .then((res) => {
         if (!res.ok) throw new Error(`Gallery fetch failed: ${res.status}`);
         return res.json();
