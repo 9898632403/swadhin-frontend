@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BASE_URL } from "../config";
 
 export default function AllCoupons() {
   const [coupons, setCoupons] = useState([]);
@@ -8,7 +9,7 @@ export default function AllCoupons() {
 
   const fetchCoupons = () => {
     console.log("🔄 Fetching admin coupons...");
-    fetch("http://localhost:5000/api/admin/coupons", {
+    fetch(`${BASE_URL}/api/admin/coupons`, {
       headers: {
         "X-User-Email": ADMIN_EMAIL
       }
@@ -40,7 +41,7 @@ export default function AllCoupons() {
     const confirmed = window.confirm(`Are you sure to delete coupon: ${code}?`);
     if (!confirmed) return;
 
-    fetch(`http://localhost:5000/api/admin/coupons/${code}`, {
+    fetch(`${BASE_URL}/api/admin/coupons/${code}`, {
       method: "DELETE",
       headers: {
         "X-User-Email": ADMIN_EMAIL
