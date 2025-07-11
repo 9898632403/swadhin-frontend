@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import "../styles/HeroSlideForm.css"; // reuse same styles
+import { BASE_URL } from "../config";
 
 const TestimonialForm = () => {
   const { userInfo } = useContext(UserContext);
@@ -27,7 +28,7 @@ const TestimonialForm = () => {
 
   const fetchTestimonials = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/admin/testimonial", {
+      const res = await axios.get(`${BASE_URL}/admin/testimonial`, {
         headers: { "X-User-Email": userEmail },
       });
       setTestimonials(res.data.testimonials || []);
@@ -63,7 +64,7 @@ const TestimonialForm = () => {
 
     setIsSubmitting(true);
     try {
-      await axios.post("http://localhost:5000/admin/testimonial", formData, {
+      await axios.post(`${BASE_URL}/admin/testimonial`, formData, {
         headers: { "Content-Type": "application/json", "X-User-Email": userEmail },
       });
       setMessage({ text: "✅ Testimonial added successfully!", type: "success" });
@@ -83,7 +84,7 @@ const TestimonialForm = () => {
   const deleteTestimonial = async (id) => {
     if (!window.confirm("Are you sure you want to delete this testimonial?")) return;
     try {
-      await axios.delete(`http://localhost:5000/admin/testimonial/${id}`, {
+      await axios.delete(`${BASE_URL}/admin/testimonial/${id}`, {
         headers: { "X-User-Email": userEmail },
       });
       setTestimonials((prev) => prev.filter((t) => t._id !== id));
