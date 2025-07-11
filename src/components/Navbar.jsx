@@ -25,6 +25,7 @@ import "../styles/Navbar.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
+import { BASE_URL } from "../config";
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
@@ -39,6 +40,15 @@ const Navbar = () => {
     setActiveLink(location.pathname);
   }, [location]);
 
+  const getActiveRouteName = () => {
+    switch(location.pathname) {
+      case '/': return 'Home';
+      case '/products': return 'Products';
+      case '/cart': return 'Cart';
+      default: return '';
+    }
+  };
+
   const handleScroll = (e, id) => {
     if (location.pathname === "/") {
       e.preventDefault();
@@ -50,8 +60,20 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    setUserInfo(null);
-    navigate("/auth");
+    fetch(`${BASE_URL}/auth/logout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setUserInfo(null);
+        localStorage.removeItem("token");
+        navigate("/auth");
+      })
+      .catch((err) => console.error(err));
   };
 
   const userEmail = userInfo?.email || userInfo?.user?.email || "";
@@ -98,6 +120,9 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 400 }}
             >
               Swadhin
+              <span className="lg:hidden ml-2 text-sm font-normal">
+                {getActiveRouteName()}
+              </span>
             </motion.span>
             <motion.div
               className="logo-shimmer"
