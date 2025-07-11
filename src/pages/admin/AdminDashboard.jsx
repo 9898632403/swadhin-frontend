@@ -10,7 +10,8 @@ import 'jspdf-autotable';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../styles/AdminDashboard.css';
-import { BASE_URL } from "../config";
+import { BASE_URL } from "../../config";
+
 
 const AdminDashboard = () => {
   const { userInfo } = useContext(UserContext);
