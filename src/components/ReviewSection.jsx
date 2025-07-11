@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import '../styles/review.css';
+import { BASE_URL } from "../config";
 
 const ReviewSection = ({ productId }) => {
   const { userInfo } = useContext(UserContext);
@@ -20,7 +21,7 @@ const ReviewSection = ({ productId }) => {
       setIsLoading(true);
       setError(null);
       try {
-        const res = await fetch(`http://localhost:5000/api/reviews/${productId}`);
+        const res = await fetch(`${BASE_URL}/api/reviews/${productId}`);
         if (!res.ok) throw new Error('Failed to fetch reviews');
         const data = await res.json();
         
@@ -74,7 +75,7 @@ const ReviewSection = ({ productId }) => {
     setError(null);
     
     try {
-      const response = await fetch(`http://localhost:5000/api/reviews/${productId}`, {
+      const response = await fetch(`${BASE_URL}/api/reviews/${productId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -92,7 +93,7 @@ const ReviewSection = ({ productId }) => {
 
       const newReview = await response.json();
       // Refetch reviews to get all updated data including reactions
-      const res = await fetch(`http://localhost:5000/api/reviews/${productId}`);
+      const res = await fetch(`${BASE_URL}/api/reviews/${productId}`);
       const data = await res.json();
       setReviews(data.reviews);
       setAverageRating(data.averageRating);
@@ -115,7 +116,7 @@ const ReviewSection = ({ productId }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/reviews/${reviewId}/react`, {
+      const response = await fetch(`${BASE_URL}/api/reviews/${reviewId}/react`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
