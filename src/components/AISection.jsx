@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { BASE_URL } from "../config";
 import {
   Package, RefreshCw, CreditCard, User, Mail, Phone,
   HelpCircle, ChevronDown, Lock, Info, ShoppingBag,
@@ -63,7 +64,7 @@ const AISection = () => {
 
   useEffect(() => {
     if (userInfo?.email) {
-      fetch(`http://localhost:5000/api/orders/${userInfo.email}`)
+      fetch(`${BASE_URL}/api/orders/${userInfo.email}`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data) && data.length > 0) {
@@ -325,7 +326,7 @@ const AISection = () => {
     setSelectedCategory(category);
     setStage("questions");
     try {
-      const res = await fetch(`http://127.0.0.1:5000/api/style/questions/${category}`);
+      const res = await fetch(`${BASE_URL}/api/style/questions/${category}`);
       const data = await res.json();
       setQuestions(data);
     } catch (err) {
@@ -337,7 +338,7 @@ const AISection = () => {
     setSelectedQuestion(question);
     setStage("answers");
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/style/answers", {
+      const res = await fetch(`${BASE_URL}/api/style/answers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ category: selectedCategory, question }),
@@ -351,7 +352,7 @@ const AISection = () => {
 
   const saveResponse = async (answer) => {
     try {
-      await fetch("http://127.0.0.1:5000/api/style/save", {
+      await fetch(`${BASE_URL}/api/style/save`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -435,7 +436,7 @@ const AISection = () => {
         <div className="ai-chat-wrapper">
           <div className="ai-chatbox">
             <div className="chat-header">
-              <h3>AI Fashion Assistant</h3>
+              <h3>Swadhin Smart Assistant</h3>
               <button onClick={toggleAISection} className="close-btn">✖</button>
             </div>
 
@@ -448,7 +449,7 @@ const AISection = () => {
                       <div className="ai-icon">{feature.icon}</div>
                       <h4>{feature.title}</h4>
                       <p>{feature.description}</p>
-                      <button onClick={() => handleTryNow(feature)}>Try Now</button>
+                      <button onClick={() => handleTryNow(feature)}>Explore</button>
                     </div>
                   ))}
                 </div>
@@ -459,7 +460,7 @@ const AISection = () => {
               <div className="ai-chat-content">
                 {stage === "start" && (
                   <>
-                    <h4>Let's find your vibe 👗</h4>
+                    <h4>Discover your style 👗</h4>
                     <div className="btn-group">
                       {categories.map((cat) => (
                         <button key={cat} onClick={() => fetchQuestions(cat)}>
@@ -472,7 +473,7 @@ const AISection = () => {
 
                 {stage === "questions" && (
                   <>
-                    <h4>Choose your confusion 🤔</h4>
+                    <h4>Pick a style question 🤔</h4>
                     <div className="btn-group">
                       {questions.map((q, i) => (
                         <button key={i} onClick={() => fetchAnswers(q.question)}>
@@ -489,7 +490,7 @@ const AISection = () => {
 
                 {stage === "answers" && (
                   <>
-                    <h4>Your personalized tip ✨</h4>
+                    <h4>Tailored advice for you ✨</h4>
                     <div className="answer-list">
                       {answers.map((a, i) => (
                         <div key={i} className="answer">{a}</div>
@@ -519,7 +520,7 @@ const AISection = () => {
             {selectedFeature && ![1, 2, 4].includes(selectedFeature.id) && (
               <div className="ai-chat-content">
                 <h4>{selectedFeature.title}</h4>
-                <p style={{ fontStyle: "italic" }}>Feature coming soon... 🚧</p>
+                <p style={{ fontStyle: "italic" }}>In progress... stay tuned! 🚧</p>
                 <button onClick={() => setSelectedFeature(null)}>← Back</button>
               </div>
             )}
