@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../config";
 import "../styles/Checkout.css";
 
 const Checkout = () => {
@@ -50,7 +51,7 @@ const Checkout = () => {
         throw new Error("Razorpay SDK failed to load");
       }
 
-      const orderResponse = await fetch("http://localhost:5000/api/create-order", {
+      const orderResponse = await fetch(`${BASE_URL}/api/create-order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,7 +86,7 @@ const Checkout = () => {
               quantity: item.quantity,
             }));
 
-            const saveOrderResponse = await fetch("http://localhost:5000/api/orders", {
+            const saveOrderResponse = await fetch(`${BASE_URL}/api/orders`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
