@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../config";
+import { BASE_URL } from "../../config";
+
 
 export default function AllCoupons() {
   const [coupons, setCoupons] = useState([]);
