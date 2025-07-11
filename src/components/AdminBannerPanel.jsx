@@ -7,13 +7,14 @@ import { Carousel } from 'primereact/carousel';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { SelectButton } from 'primereact/selectbutton';
+import { BASE_URL } from "../config";
 import '../styles/banner.css';
 
 const AdminBannerPanel = () => {
   const userEmail = localStorage.getItem('email');
   console.log("🧠 Local email:", userEmail);
   const { enqueueSnackbar } = useSnackbar();
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
+  const API_URL = BASE_URL;
 
   const headers = {
     'X-User-Email': userEmail || '',
@@ -42,8 +43,8 @@ const AdminBannerPanel = () => {
   const fetchData = async () => {
     try {
       const notifUrl = userEmail === 'admin@example.com'
-        ? `${API_URL}/admin/notifications`
-        : `${API_URL}/notifications`;
+        ? `${BASE_URL}/admin/notifications`
+        : `${BASE_URL}/notifications`;
 
       const notifConfig = userEmail === 'admin@example.com'
         ? { headers }
@@ -51,7 +52,7 @@ const AdminBannerPanel = () => {
 
       const [notifsRes, bannersRes] = await Promise.all([
         axios.get(notifUrl, notifConfig),
-        axios.get(`${API_URL}/admin/banners`, { headers }),
+        axios.get(`${BASE_URL}/admin/banners`, { headers }),
       ]);
       setNotifications(notifsRes.data);
       setBanners(bannersRes.data);
@@ -66,7 +67,7 @@ const AdminBannerPanel = () => {
     if (!newNotification.trim()) return;
 
     try {
-      await axios.post(`${API_URL}/admin/notification`,
+      await axios.post(`${BASE_URL}/admin/notification`,
         { message: newNotification },
         {
           headers: {
@@ -90,7 +91,7 @@ const AdminBannerPanel = () => {
     if (redirectUrl) formData.append('redirectUrl', redirectUrl);
 
     try {
-      await axios.post(`${API_URL}/admin/banner`, formData, {
+      await axios.post(`${BASE_URL}/admin/banner`, formData, {
         headers: {
           ...headers,
           'Content-Type': 'multipart/form-data',
@@ -109,7 +110,7 @@ const AdminBannerPanel = () => {
     if (!deleteItem.id || !deleteItem.type) return;
 
     try {
-      await axios.delete(`${API_URL}/admin/${deleteItem.type}/${deleteItem.id}`, { headers });
+      await axios.delete(`${BASE_URL}/admin/${deleteItem.type}/${deleteItem.id}`, { headers });
       fetchData();
       showSuccess('Item deleted');
     } catch (error) {
@@ -126,7 +127,7 @@ const AdminBannerPanel = () => {
   const bannerTemplate = (banner) => (
     <div className="banner-item">
       <img
-        src={`${API_URL}/static/uploads/banners/${banner.imageUrl}`}
+        src={`${BASE_URL}/static/uploads/banners/${banner.imageUrl}`}
         alt="banner"
       />
       <div className="banner-actions">
