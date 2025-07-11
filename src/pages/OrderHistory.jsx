@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { BASE_URL } from "../config";
 import jsPDF from "jspdf";
 import TrackOrderModal from "../components/TrackOrderModal";
 import "../styles/OrderHistory.css";
@@ -22,8 +23,8 @@ const OrderHistory = () => {
     setError("");
     try {
       const url = isAdmin
-        ? "http://localhost:5000/api/orders"
-        : `http://localhost:5000/api/orders/${userInfo.email}`;
+        ? `${BASE_URL}/api/orders`
+        : `${BASE_URL}/api/orders/${userInfo.email}`;
 
       const options = isAdmin
         ? { headers: { "X-User-Email": userInfo.email } }
