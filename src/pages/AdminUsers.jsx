@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BASE_URL } from "../config";
 import "../styles/AdminUsers.css";
 
 const AdminUsers = () => {
@@ -12,7 +13,7 @@ const AdminUsers = () => {
     setError(null);
     
     try {
-      const res = await fetch("/api/admin/users", {
+      const res = await fetch(`${BASE_URL}/api/admin/users`, {
         headers: {
           "X-User-Email": adminEmail,
           "Content-Type": "application/json",
@@ -45,7 +46,7 @@ const AdminUsers = () => {
     }
 
     try {
-      const res = await fetch("/api/admin/users/delete", {
+      const res = await fetch(`${BASE_URL}/api/admin/users/delete`, {
         method: "DELETE", // More semantically correct than POST for deletion
         headers: {
           "Content-Type": "application/json",
