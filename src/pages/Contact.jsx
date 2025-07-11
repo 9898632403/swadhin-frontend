@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../config";
 import "../styles/Contact.css";
 import { X, Mail, Phone, Calendar, FileText, MessageSquare, User, Image } from "react-feather";
 
@@ -70,7 +71,7 @@ const Contact = () => {
     formToSend.append("type", queryType);
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch(`${BASE_URL}/api/contact`, {
         method: "POST",
         body: formToSend,
       });
