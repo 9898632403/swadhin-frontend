@@ -1,8 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate, useLocation } from "react-router-dom";
-import { FaEye, FaEyeSlash, FaArrowRight, FaSignInAlt, FaUserPlus, FaLock } from "react-icons/fa";
+import {
+  FaEye,
+  FaEyeSlash,
+  FaArrowRight,
+  FaSignInAlt,
+  FaUserPlus,
+  FaLock,
+} from "react-icons/fa";
 import "../styles/auth.css";
+
+const BASE_URL = "https://swadhin-backend-production.up.railway.app";
 
 const Auth = () => {
   const { setUserInfo } = useContext(UserContext);
@@ -52,9 +61,7 @@ const Auth = () => {
     setError("");
     setMessage("");
 
-    const url = isLogin
-      ? "http://127.0.0.1:5000/login"
-      : "http://127.0.0.1:5000/signup";
+    const url = isLogin ? `${BASE_URL}/login` : `${BASE_URL}/signup`;
 
     const bodyData = isLogin
       ? { email, password }
@@ -65,7 +72,6 @@ const Auth = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bodyData),
-        credentials: "include",
       });
 
       const data = await res.json();
@@ -80,6 +86,10 @@ const Auth = () => {
         token: data.token || null,
         isAdmin: data.isAdmin || false,
       });
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("email", data.email);
+      if (data.isAdmin) localStorage.setItem("isAdmin", "true");
 
       setEmail("");
       setPassword("");
@@ -100,7 +110,7 @@ const Auth = () => {
     setError("");
     setMessage("");
     try {
-      const res = await fetch("http://127.0.0.1:5000/forgot-password", {
+      const res = await fetch(`${BASE_URL}/forgot-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -120,7 +130,7 @@ const Auth = () => {
     setError("");
     setMessage("");
     try {
-      const res = await fetch("http://127.0.0.1:5000/reset-password", {
+      const res = await fetch(`${BASE_URL}/reset-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp, new_password: newPassword }),
@@ -275,7 +285,9 @@ const Auth = () => {
                 <button
                   onClick={handleResetPassword}
                   className="auth-submit-button"
-                  disabled={!email || !otp || !newPassword || newPassword.length < 6}
+                  disabled={
+                    !email || !otp || !newPassword || newPassword.length < 6
+                  }
                 >
                   Reset Password <FaArrowRight />
                 </button>
@@ -285,7 +297,9 @@ const Auth = () => {
             {!isForgot && (
               <div className="auth-actions">
                 <p className="auth-toggle-text">
-                  {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+                  {isLogin
+                    ? "Don't have an account?"
+                    : "Already have an account?"}{" "}
                   <button onClick={toggleForm} className="auth-toggle-link">
                     {isLogin ? "Sign Up" : "Login"}
                   </button>
