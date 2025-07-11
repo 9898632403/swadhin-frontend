@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import { BASE_URL } from "../config";
 import {
   X, Package, RefreshCw, CreditCard, User, Mail, Phone,
   HelpCircle, ChevronDown, Lock, Info, ShoppingBag,
@@ -19,9 +20,9 @@ const HelpTopics = ({ onClose = () => {} }) => {
   const [activeFaq, setActiveFaq] = useState(null);
   const navigate = useNavigate();
 
- useEffect(() => {
+  useEffect(() => {
     if (userInfo?.email) {
-      fetch(`http://localhost:5000/api/orders/${userInfo.email}`)
+      fetch(`${BASE_URL}/api/orders/${userInfo.email}`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data) && data.length > 0) {
@@ -142,7 +143,7 @@ const HelpTopics = ({ onClose = () => {} }) => {
           content: (
             <div className="space-y-4">
               <p className="text-gray-700">
-                If you're facing payment issues such as deduction without confirmation, incorrect billing, or delay in payment update — we’re here to help.
+                If you're facing payment issues such as deduction without confirmation, incorrect billing, or delay in payment update — we're here to help.
               </p>
               <button
                 onClick={() => {
