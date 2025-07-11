@@ -10,6 +10,7 @@ import 'jspdf-autotable';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../styles/AdminDashboard.css';
+import { BASE_URL } from "../config";
 
 const AdminDashboard = () => {
   const { userInfo } = useContext(UserContext);
@@ -29,7 +30,7 @@ const AdminDashboard = () => {
     if (!userInfo?.email) return;
 
     setLoading(true);
-    fetch("http://localhost:5000/api/orders", {
+    fetch(`${BASE_URL}/api/orders`, {
       headers: {
         "X-User-Email": userInfo.email,
       },
