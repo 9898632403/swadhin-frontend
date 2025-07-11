@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { BASE_URL } from "../config";
 import HeroSection from "../components/HeroSection";
 import AISection from "../components/AISection";
 import ScratchCardPopup from "../components/ScratchCardPopup";
 
-
 const Home = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [userCoupon, setUserCoupon] = useState(null);
-
-  const API_URL = import.meta.env.VITE_REACT_APP_API_URL;
 
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -17,7 +15,7 @@ const Home = () => {
     const hasUsedWelcome = localStorage.getItem(`welcomeUsed_${userEmail}`) === "true";
 
     if (!hasUsedWelcome && userInfo) {
-      fetch(`${API_URL}/api/coupons`)
+      fetch(`${BASE_URL}/api/coupons`)
         .then((res) => res.json())
         .then((data) => {
           const welcomeCoupon = data.find((c) => c.is_welcome_coupon === true);
