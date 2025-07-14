@@ -40,15 +40,6 @@ const Navbar = () => {
     setActiveLink(location.pathname);
   }, [location]);
 
-  const getActiveRouteName = () => {
-    switch(location.pathname) {
-      case '/': return 'Home';
-      case '/products': return 'Products';
-      case '/cart': return 'Cart';
-      default: return '';
-    }
-  };
-
   const handleScroll = (e, id) => {
     if (location.pathname === "/") {
       e.preventDefault();
@@ -100,6 +91,7 @@ const Navbar = () => {
   return (
     <nav className="luxury-navbar">
       <div className="navbar-container">
+
         {/* Logo Section */}
         <motion.div 
           className="navbar-logo"
@@ -120,9 +112,6 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 400 }}
             >
               Swadhin
-              <span className="lg:hidden ml-2 text-sm font-normal">
-                {getActiveRouteName()}
-              </span>
             </motion.span>
             <motion.div
               className="logo-shimmer"
