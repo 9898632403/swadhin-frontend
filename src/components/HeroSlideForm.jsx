@@ -84,16 +84,27 @@ export default function HeroSlideForm() {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    const isValid =
+      (formData.type === "image" && file.type.startsWith("image/")) ||
+      (formData.type === "video" && file.type.startsWith("video/"));
+
+    if (!isValid) {
+      setErrors(prev => ({ ...prev, src: "Invalid file type selected." }));
+      return;
+    }
+
     if (filePreview) URL.revokeObjectURL(filePreview);
     const previewUrl = URL.createObjectURL(file);
     setFileUpload(file);
     setFilePreview(previewUrl);
-    setMessage({ text: "File selected. Upload will begin when you submit.", type: "info" });
+    setMessage({ text: "File selected. Upload will begin on submit.", type: "info" });
   };
 
   const uploadFile = async () => {
     if (!fileUpload) return formData.src;
+
     setMessage({ text: "Uploading file...", type: "info" });
+
     const form = new FormData();
     form.append("file", fileUpload);
 
@@ -101,12 +112,13 @@ export default function HeroSlideForm() {
       const res = await axios.post(`${BASE_URL}/upload/hero`, form, {
         headers: { "X-User-Email": userEmail }
       });
-      return res.data.fileUrl;
+
+      return res.data.fileUrl; // ✅ Cloudinary URL returned from backend
     } catch (err) {
       console.error(err);
-      setMessage({ 
-        text: err.response?.data?.message || "❌ File upload failed", 
-        type: "error" 
+      setMessage({
+        text: err.response?.data?.message || "❌ File upload failed",
+        type: "error"
       });
       throw err;
     }
@@ -115,8 +127,14 @@ export default function HeroSlideForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage({ text: "", type: "" });
-    if (!userEmail) return setMessage({ text: "❌ Admin not authenticated.", type: "error" });
+
+    if (!userEmail) {
+      setMessage({ text: "❌ Admin not authenticated.", type: "error" });
+      return;
+    }
+
     if (!validateForm()) return;
+
     setIsSubmitting(true);
 
     try {
@@ -128,12 +146,14 @@ export default function HeroSlideForm() {
         subtitle: formData.subtitle.trim(),
         overlayColor: formData.overlayColor.trim(),
       };
+
       await axios.post(`${BASE_URL}/admin/hero-slide`, payload, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Email": userEmail,
         }
       });
+
       setMessage({ text: "✅ Slide uploaded successfully!", type: "success" });
       setFormData(initialFormState);
       setFileUpload(null);
@@ -142,12 +162,10 @@ export default function HeroSlideForm() {
       fetchSlides();
     } catch (err) {
       console.error(err);
-      if (!message.text) {
-        setMessage({ 
-          text: err.response?.data?.message || "❌ Failed to upload slide.", 
-          type: "error" 
-        });
-      }
+      setMessage({
+        text: err.response?.data?.message || "❌ Failed to upload slide.",
+        type: "error"
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -170,10 +188,10 @@ export default function HeroSlideForm() {
 
         <div className="form-group">
           <label>Slide Type</label>
-          <select 
-            name="type" 
-            value={formData.type} 
-            onChange={handleInputChange} 
+          <select
+            name="type"
+            value={formData.type}
+            onChange={handleInputChange}
             className="form-control"
           >
             <option value="image">Image</option>
@@ -183,10 +201,10 @@ export default function HeroSlideForm() {
 
         <div className="form-group">
           <label>Source Type</label>
-          <select 
-            name="srcType" 
-            value={formData.srcType} 
-            onChange={handleInputChange} 
+          <select
+            name="srcType"
+            value={formData.srcType}
+            onChange={handleInputChange}
             className="form-control"
           >
             <option value="url">Paste URL</option>
@@ -219,18 +237,18 @@ export default function HeroSlideForm() {
             />
             {filePreview && (
               formData.type === "image" ? (
-                <img 
-                  src={filePreview} 
-                  alt="preview" 
-                  className="img-thumbnail mt-2" 
-                  style={{ maxHeight: "180px" }} 
+                <img
+                  src={filePreview}
+                  alt="preview"
+                  className="img-thumbnail mt-2"
+                  style={{ maxHeight: "180px" }}
                 />
               ) : (
-                <video 
-                  src={filePreview} 
-                  controls 
-                  className="img-thumbnail mt-2" 
-                  style={{ maxHeight: "180px" }} 
+                <video
+                  src={filePreview}
+                  controls
+                  className="img-thumbnail mt-2"
+                  style={{ maxHeight: "180px" }}
                 />
               )
             )}
@@ -270,9 +288,9 @@ export default function HeroSlideForm() {
             <input
               type="color"
               value={formData.overlayColor.startsWith("#") ? formData.overlayColor : "#000000"}
-              onChange={(e) => {
-                setFormData(prev => ({ ...prev, overlayColor: e.target.value }));
-              }}
+              onChange={(e) =>
+                setFormData(prev => ({ ...prev, overlayColor: e.target.value }))
+              }
               className="form-control form-control-color"
             />
             <input
@@ -287,11 +305,7 @@ export default function HeroSlideForm() {
           {errors.overlayColor && <div className="invalid-feedback">{errors.overlayColor}</div>}
         </div>
 
-        <button 
-          type="submit" 
-          className="btn btn-primary" 
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
           {isSubmitting ? (
             <>
               <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
