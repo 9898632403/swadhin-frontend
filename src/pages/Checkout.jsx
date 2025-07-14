@@ -23,7 +23,7 @@ const Checkout = () => {
     if (!userInfo?.email) {
       navigate("/login");
     } else if (!userInfo?.address || !userInfo?.name || !userInfo?.phone) {
-      navigate("/userinfo"); // 👉 Redirect if user info not filled
+      navigate("/userinfo");
     }
   }, [userInfo, navigate]);
 
@@ -90,6 +90,7 @@ const Checkout = () => {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
+                Authorization: userInfo.token, // <-- Added token here
               },
               body: JSON.stringify({
                 email: userInfo.email,
