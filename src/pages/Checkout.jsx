@@ -3,6 +3,7 @@ import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config";
+import AsyncSelect from 'react-select/async';
 import "../styles/Checkout.css";
 
 const Checkout = () => {

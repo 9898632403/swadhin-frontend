@@ -81,15 +81,14 @@ const Auth = () => {
         return;
       }
 
-      setUserInfo({
+      const userData = {
         email: data.email,
         token: data.token || null,
         isAdmin: data.isAdmin || false,
-      });
+      };
 
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("email", data.email);
-      if (data.isAdmin) localStorage.setItem("isAdmin", "true");
+      setUserInfo(userData);
+      localStorage.setItem("userInfo", JSON.stringify(userData));
 
       setEmail("");
       setPassword("");
