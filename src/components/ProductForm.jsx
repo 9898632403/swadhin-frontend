@@ -2,7 +2,7 @@ import React, { useState, useContext, useCallback } from "react";
 import { UserContext } from "../context/UserContext";
 import "../styles/Addform.css";
 import axios from "axios";
-import { BASE_URL } from "../config"; // ✅ ADDED
+import { BASE_URL } from "../config";
 
 export default function ProductForm() {
   const { userInfo } = useContext(UserContext);
@@ -87,7 +87,7 @@ export default function ProductForm() {
       }
     });
 
-    return response.data.url;
+    return response.data.url; // Cloudinary URL
   };
 
   const handleSubmit = async (e) => {
@@ -123,7 +123,7 @@ export default function ProductForm() {
           .filter(Boolean)
       };
 
-      const response = await axios.post(`${BASE_URL}/api/products`, payload, {
+      await axios.post(`${BASE_URL}/api/products`, payload, {
         headers: {
           "Content-Type": "application/json",
           "X-User-Email": userInfo.email,
