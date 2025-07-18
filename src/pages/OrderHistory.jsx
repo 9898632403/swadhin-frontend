@@ -57,25 +57,28 @@ const OrderHistory = () => {
         headers: {
           "Content-Type": "application/json",
           "X-User-Email": userInfo.email,
+          "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
         },
+        credentials: "include",
         body: JSON.stringify({ status: newStatus }),
       });
 
-      const data = await res.json();
-      if (res.ok) {
-        setOrders((prev) =>
-          prev.map((order) =>
-            order._id === orderId
-              ? { ...order, status: newStatus, statusUpdatedAt: new Date().toISOString() }
-              : order
-          )
-        );
-      } else {
-        alert(data.error || "Failed to update status");
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to update status");
       }
+
+      const data = await res.json();
+      setOrders((prev) =>
+        prev.map((order) =>
+          order._id === orderId
+            ? { ...order, status: newStatus, statusUpdatedAt: new Date().toISOString() }
+            : order
+        )
+      );
     } catch (err) {
       console.error("Status Update Error ❌", err);
-      alert("Something went wrong while updating status.");
+      alert(err.message || "Something went wrong while updating status.");
     }
   };
 
