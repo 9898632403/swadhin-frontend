@@ -46,17 +46,43 @@ const OrderHistory = () => {
     }
   };
 
+  const updateOrderStatus = async (orderId, newStatus) => {
+    try {
+      const res = await fetch(`${BASE_URL}/api/orders/${orderId}/update-status`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: userInfo.email, // as per your backend structure
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        // Update the state locally
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId
+              ? { ...order, status: newStatus, statusUpdatedAt: new Date().toISOString() }
+              : order
+          )
+        );
+      } else {
+        alert(data.error || "Failed to update status");
+      }
+    } catch (error) {
+      console.error("Update Error ❌", error);
+      alert("Failed to update status. Please try again.");
+    }
+  };
+
   const generateBill = (order) => {
     const doc = new jsPDF();
     doc.setFontSize(18);
     doc.text("SWADHIN - Invoice/Bill", 20, 20);
     doc.setFontSize(12);
     doc.text(`Order ID: ${order.orderId || order._id}`, 20, 35);
-    doc.text(
-      `Order Date: ${order.orderDate || new Date(order.timestamp).toLocaleString()}`,
-      20,
-      45
-    );
+    doc.text(`Order Date: ${order.orderDate || new Date(order.timestamp).toLocaleString()}`, 20, 45);
     doc.text(`Customer Email: ${order.email}`, 20, 55);
     doc.text(`Delivery Address: ${order.deliveryAddress || "N/A"}`, 20, 65);
     doc.text("Items:", 20, 80);
@@ -82,7 +108,7 @@ const OrderHistory = () => {
 
   const isWithinLastNDays = (dateStr, days = 15) => {
     const now = new Date();
-    const date = new Date(dateStr || new Date()); // fallback to now if invalid
+    const date = new Date(dateStr || new Date());
     const diff = (now - date) / (1000 * 60 * 60 * 24);
     return diff <= days;
   };
@@ -95,8 +121,7 @@ const OrderHistory = () => {
     )
     .filter((order) =>
       isAdmin
-        ? (!emailFilter ||
-            order.email.toLowerCase().includes(emailFilter.toLowerCase())) &&
+        ? (!emailFilter || order.email.toLowerCase().includes(emailFilter.toLowerCase())) &&
           (!dateFilter || (order.orderDate || "").includes(dateFilter))
         : isWithinLastNDays(order.orderDate || order.timestamp)
     );
