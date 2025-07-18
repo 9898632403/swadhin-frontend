@@ -52,7 +52,7 @@ const OrderHistory = () => {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: userInfo.email, // as per your backend structure
+          "X-User-Email": userInfo.email, // ✅ FIXED: used correct header
         },
         body: JSON.stringify({ status: newStatus }),
       });
@@ -68,7 +68,7 @@ const OrderHistory = () => {
           )
         );
       } else {
-        alert(data.error || "Failed to update status");
+        alert(data.error || "Failed to update status ❌");
       }
     } catch (error) {
       console.error("Update Error ❌", error);
