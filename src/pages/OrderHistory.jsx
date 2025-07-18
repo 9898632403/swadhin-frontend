@@ -52,23 +52,20 @@ const OrderHistory = () => {
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      const res = await fetch(`${BASE_URL}/api/orders/${orderId}/update-status`, {
-        method: "PATCH",
+      const res = await fetch(`${BASE_URL}/api/admin/update-status`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-User-Email": userInfo.email,
-          "Authorization": `Bearer ${localStorage.getItem('token') || ''}`
+          "Authorization": `Bearer ${localStorage.getItem("token") || ""}`
         },
         credentials: "include",
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ order_id: orderId, status: newStatus }),
       });
 
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || "Failed to update status");
-      }
-
       const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to update status");
+
       setOrders((prev) =>
         prev.map((order) =>
           order._id === orderId
