@@ -68,7 +68,7 @@ const Checkout = () => {
       const orderData = await orderResponse.json();
 
       const options = {
-        key: "rzp_test_Bb1uJViwCuwrdz",
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
         amount: orderData.amount,
         currency: orderData.currency,
         name: "SWADHIN",
